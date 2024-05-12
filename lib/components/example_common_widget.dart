@@ -1,8 +1,7 @@
 import 'package:admin/components/example_chart_widget.dart';
+import 'package:admin/config/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-
-import '../../../config/constants.dart';
 
 class StorageDetails extends StatelessWidget {
   const StorageDetails({
@@ -21,7 +20,7 @@ class StorageDetails extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Storage Details",
+            "Example charts",
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w500,
@@ -117,4 +116,3 @@ class StorageInfoCard extends StatelessWidget {
     );
   }
 }
-

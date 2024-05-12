@@ -12,3 +12,14 @@ class LoadBotsList extends BotsEvent {
   @override
   List<Object?> get props => [completer];
 }
+
+class DeleteBot extends BotsEvent {
+  DeleteBot({
+    this.completer,
+  });
+
+  final Completer? completer;
+
+  @override
+  List<Object?> get props => [completer];
+}

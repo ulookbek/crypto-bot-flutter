@@ -1,3 +1,4 @@
+import 'package:admin/features/api_key/bloc/api_key_bloc.dart';
 import 'package:admin/features/bot/bloc/bot_bloc.dart';
 import 'package:admin/features/menu/bloc/menu_bloc.dart';
 import 'package:admin/router/routes.dart';
@@ -9,8 +10,8 @@ void main() {
   runApp(MultiBlocProvider(
     providers: [
       BlocProvider(create: (context) => BotBloc()),
-      BlocProvider(create: (context) => MenuBloc())
-      // Другие провайдеры...
+      BlocProvider(create: (context) => MenuBloc()),
+      BlocProvider(create: (context) => ApiKeyBloc())
     ],
     child: MyApp(),
   ));

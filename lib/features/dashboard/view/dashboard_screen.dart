@@ -2,6 +2,7 @@ import 'package:admin/components/example_common_widget.dart';
 import 'package:admin/config/constants.dart';
 import 'package:admin/config/responsive.dart';
 import 'package:admin/features/bot/widgets/bots_chart_widget.dart';
+import 'package:admin/features/bot/widgets/bots_table_widget.dart';
 // import 'package:admin/features/bot/widgets/bots_table_widget.dart';
 import 'package:admin/features/dashboard/widgets/header.dart';
 import 'package:flutter/material.dart';
@@ -40,10 +41,10 @@ class DashboardScreen extends StatelessWidget {
                         height: defaultPadding,
                       ),
                       // MyBots(botsList: []),
-                      if (Responsive.isMobile(context))
-                        SizedBox(height: defaultPadding),
-                      if (Responsive.isMobile(context)) StorageDetails(),
-                      SizedBox(height: defaultPadding),
+                      // if (Responsive.isMobile(context))
+                      //   SizedBox(height: defaultPadding),
+                      // if (Responsive.isMobile(context)) StorageDetails(),
+                      // SizedBox(height: defaultPadding),
                     ],
                   ),
                 ),
@@ -58,6 +59,8 @@ class DashboardScreen extends StatelessWidget {
               ],
             ),
             SizedBox(width: defaultPadding),
+            MyBots(),
+            SizedBox(height: defaultPadding),
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

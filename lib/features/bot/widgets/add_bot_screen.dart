@@ -12,10 +12,7 @@ class AddBotScreen extends StatelessWidget {
         primary: false,
         padding: EdgeInsets.all(defaultPadding),
         child: Column(
-          children: [
-            Header(),
-            CreateBotForm(),
-          ],
+          children: [Header(), CreateBotForm()],
         ),
       ),
     );

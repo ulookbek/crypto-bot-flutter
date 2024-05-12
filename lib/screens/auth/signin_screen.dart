@@ -23,9 +23,8 @@ class _SignInScreenState extends State<SignInScreen> {
   }
 
   void login() {
-    // sign-in request
     if (_emailCtrl.text == "ulukbek" && _passwordCtrl.text == "ulukbek") {
-      Navigator.pushReplacementNamed(context, "/dashboard/main");
+      Navigator.pushReplacementNamed(context, "/");
     }
   }
 

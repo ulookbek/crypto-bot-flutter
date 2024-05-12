@@ -2,7 +2,7 @@ import 'package:admin/config/constants.dart';
 import 'package:flutter/material.dart';
 
 class CustomDropdown<T> extends StatelessWidget {
-  final T currentValue;
+  final T? currentValue;
   final List<T> items;
   final String Function(T) getLabel;
   final void Function(T?) onChanged;

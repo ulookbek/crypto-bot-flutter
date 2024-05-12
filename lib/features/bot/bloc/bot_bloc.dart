@@ -21,7 +21,6 @@ class BotBloc extends Bloc<BotsEvent, BotsState> {
         emit(BotsLoading());
       }
       final botsList = await BotRepository().getBotsList();
-      print("===== WELL!!");
       emit(BotsLoaded(botsList: botsList));
     } catch (e) {
       emit(BotsLoadingFailure(exception: e));

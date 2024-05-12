@@ -1,7 +1,7 @@
+import 'package:admin/features/api_key/view/api_keys_list_screen.dart';
 import 'package:admin/features/bot/view/bots_list_screen.dart';
 import 'package:admin/features/dashboard/view/dashboard_screen.dart';
 import 'package:admin/features/menu/bloc/menu_bloc.dart';
-import 'package:admin/screens/api_keys/api_keys_screen.dart';
 // import 'package:admin/screens/bots/add_bot_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -52,9 +52,6 @@ class _SideMenuState extends State<SideMenu> {
             svgSrc: "assets/icons/menu_dashbord.svg",
             press: () {
               menuBloc.add(SetCurrentPageEvent(DashboardScreen()));
-              // context
-              //     .read<MenuAppController>()
-              //     .setCurrentPage(DashboardScreen());
             },
           ),
           DrawerListTile(
@@ -76,7 +73,7 @@ class _SideMenuState extends State<SideMenu> {
             title: "API ключи",
             svgSrc: "assets/icons/menu_doc.svg",
             press: () {
-              menuBloc.add(SetCurrentPageEvent(ApiKeysScreen()));
+              menuBloc.add(SetCurrentPageEvent(ApiKeysListScreen()));
 
               // context.read<MenuAppController>().setCurrentPage(ApiKeysScreen());
             },
@@ -87,19 +84,16 @@ class _SideMenuState extends State<SideMenu> {
             press: () {},
           ),
           DrawerListTile(
-            title: "Notification",
-            svgSrc: "assets/icons/menu_notification.svg",
-            press: () {},
-          ),
-          DrawerListTile(
             title: "Профиль",
             svgSrc: "assets/icons/menu_profile.svg",
             press: () {},
           ),
           DrawerListTile(
-            title: "Settings",
+            title: "Выход",
             svgSrc: "assets/icons/menu_setting.svg",
-            press: () {},
+            press: () {
+              Navigator.pushReplacementNamed(context, "/signin");
+            },
           ),
         ],
       ),

@@ -1,6 +1,5 @@
 import 'package:admin/config/constants.dart';
 import 'package:flutter/material.dart';
-// import 'package:google_fonts/google_fonts.dart';
 
 final darkTheme = ThemeData.dark().copyWith(
     popupMenuTheme: PopupMenuThemeData(
@@ -14,15 +13,12 @@ final darkTheme = ThemeData.dark().copyWith(
       ),
     ),
     scaffoldBackgroundColor: bgColor,
-    // textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme)
-    //     .apply(bodyColor: Colors.white),
     canvasColor: secondaryColor,
     primaryColor: kPrimaryColor,
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         elevation: 0,
         shape: const StadiumBorder(),
-        // maximumSize: const Size(double.infinity, 56),
         minimumSize: const Size(double.infinity, 56),
       ),
     ),

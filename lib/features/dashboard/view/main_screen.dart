@@ -1,12 +1,10 @@
-// import 'package:admin/controllers/MenuAppController.dart';
 import 'package:admin/config/responsive.dart';
 import 'package:admin/features/dashboard/view/dashboard_screen.dart';
-// import 'package:admin/features/dashboard/widgets/header.dart';
 import 'package:admin/features/menu/bloc/menu_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'components/side_menu.dart';
+import '../../../screens/main/components/side_menu.dart';
 
 class MainScreen extends StatelessWidget {
   @override
@@ -35,11 +33,6 @@ class MainScreen extends StatelessWidget {
                   }
                 },
               ),
-              // child: Consumer<MenuAppController>(
-              //   builder: (context, menuAppController, child) {
-              //     return menuAppController.currentPage;
-              //   },
-              // ),
             ),
           ],
         ),

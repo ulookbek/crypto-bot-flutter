@@ -1,4 +1,4 @@
-import 'package:admin/screens/bots/add_bot_screen.dart';
+import 'package:admin/features/bot/widgets/add_bot_screen.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 
@@ -21,7 +21,6 @@ class MenuBloc extends Bloc<MenuEvent, MenuState> {
 
     on<SetCurrentPageEvent>((event, emit) {
       _currentPage = event.page;
-      print(_currentPage);
       emit(CurrentPageState(_currentPage));
     });
   }

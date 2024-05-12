@@ -1,38 +1,25 @@
 import 'package:admin/config/constants.dart';
 import 'package:admin/config/responsive.dart';
-import 'package:admin/features/bot/bloc/bot_bloc.dart';
-import 'package:admin/features/bot/widgets/add_bot_screen.dart';
+import 'package:admin/features/api_key/bloc/api_key_bloc.dart';
+import 'package:admin/features/api_key/view/api_key_add_screen.dart';
 import 'package:admin/features/menu/bloc/menu_bloc.dart';
-import 'package:admin/repositories/bot/bot.dart';
+import 'package:admin/repositories/api_key/models/ApiKey.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 enum ActionType { modify, delete, start, detail }
 
-class MyBots extends StatefulWidget {
-  const MyBots({
+class MyApiKeysTable extends StatefulWidget {
+  const MyApiKeysTable({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<MyBots> createState() => _MyBotsState();
+  State<MyApiKeysTable> createState() => _MyApiKeysTableState();
 }
 
-class _MyBotsState extends State<MyBots> {
-  List<DataColumn> getColumns(bool isMobile) {
-    if (isMobile) {
-      return [
-        DataColumn(
-          label: Text("ID"),
-        ),
-        DataColumn(
-          label: Text("Название"),
-        ),
-        DataColumn(
-          label: Text("Действие"),
-        ),
-      ];
-    }
+class _MyApiKeysTableState extends State<MyApiKeysTable> {
+  List<DataColumn> getColumns() {
     return [
       DataColumn(
         label: Text("ID"),
@@ -44,51 +31,37 @@ class _MyBotsState extends State<MyBots> {
         label: Text("Дата создания"),
       ),
       DataColumn(
-        label: Text("Биржа"),
-      ),
-      DataColumn(
-        label: Text("Торговая пара"),
-      ),
-      DataColumn(
-        label: Text("Сумма"),
-      ),
-      DataColumn(
-        label: Text("Статус"),
-      ),
-      DataColumn(
-        label: Text("Активность"),
-      ),
-      DataColumn(
         label: Text("Действие"),
       ),
     ];
   }
 
-  final _botsList = BotBloc();
+  final _apiKeysList = ApiKeyBloc();
 
   @override
   void initState() {
-    _botsList.add(LoadBotsList());
+    _apiKeysList.add(LoadApiKeysList());
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<BotBloc, BotsState>(
-        bloc: _botsList,
+    return BlocBuilder<ApiKeyBloc, ApiKeyState>(
+        bloc: _apiKeysList,
         builder: (context, state) {
-          if (state is BotsLoaded) {
+          if (state is ApiKeyLoaded) {
             return Column(
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Text(
-                      "Мои боты",
+                      "Мои API ключи",
                       style: Theme.of(context).textTheme.titleMedium,
                     ),
                     ElevatedButton.icon(
                       style: ElevatedButton.styleFrom(
+                        // maximumSize: const Size(300, 56),
                         minimumSize: const Size(250, 56),
                         padding: EdgeInsets.symmetric(
                           horizontal: defaultPadding * 1.5,
@@ -99,10 +72,10 @@ class _MyBotsState extends State<MyBots> {
                       onPressed: () {
                         context
                             .read<MenuBloc>()
-                            .add(SetCurrentPageEvent(AddBotScreen()));
+                            .add(SetCurrentPageEvent(CreateApiKeyScreen()));
                       },
                       icon: Icon(Icons.add),
-                      label: Text("Создать бота"),
+                      label: Text("Добавить новый  API ключ"),
                     ),
                   ],
                 ),
@@ -123,21 +96,15 @@ class _MyBotsState extends State<MyBots> {
                         child: DataTable(
                           columnSpacing: defaultPadding,
                           // minWidth: 600,
-                          columns: getColumns(Responsive.isMobile(context)),
-                          rows: Responsive.isMobile(context)
-                              ? List.generate(
-                                  state.botsList.length,
-                                  (index) => botsDataRow(state.botsList[index],
-                                      Responsive.isMobile(context)),
-                                )
-                              : List.generate(
-                                  state.botsList.length,
-                                  (index) {
-                                    final bot = state.botsList.toList()[index];
-                                    return botsDataRow(
-                                        bot, Responsive.isMobile(context));
-                                  },
-                                ),
+                          columns: getColumns(),
+                          rows: List.generate(
+                            state.apiKeysList.length,
+                            (index) {
+                              final apiKey = state.apiKeysList.toList()[index];
+                              return botsDataRow(
+                                  apiKey, Responsive.isMobile(context));
+                            },
+                          ),
                         ),
                       ),
                     ],
@@ -152,28 +119,12 @@ class _MyBotsState extends State<MyBots> {
   }
 }
 
-DataRow botsDataRow(BotEntity fileInfo, bool isMobile) {
-  if (isMobile) {
-    return DataRow(
-      cells: [
-        DataCell(Text(fileInfo.id)),
-        DataCell(Text(fileInfo.name)),
-        DataCell(tableDropdown()),
-
-        // DataCell(Text(fileInfo.isActive ? "Активный" : "Не активный")),
-      ],
-    );
-  }
+DataRow botsDataRow(ApiKeyEntity fileInfo, bool isMobile) {
   return DataRow(
     cells: [
       DataCell(Text(fileInfo.id)),
       DataCell(Text(fileInfo.name)),
       DataCell(Text(formatDateTime(fileInfo.createdAt))),
-      DataCell(Text(fileInfo.exchange.name)),
-      DataCell(Text(fileInfo.symbol.name)),
-      DataCell(Text(fileInfo.amount.toString())),
-      DataCell(Text(fileInfo.status.name)),
-      DataCell(Text(fileInfo.isActive ? "Активный" : "Не активный")),
       DataCell(tableDropdown()),
     ],
   );

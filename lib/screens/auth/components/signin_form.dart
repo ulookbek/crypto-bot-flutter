@@ -63,9 +63,6 @@ class SignInForm extends StatelessWidget {
                 print("Please input your password");
               } else {
                 onButtonPressed.call();
-                // context
-                //     .read<AuthLogic>()
-                //     .loginLogic(_emailCtrl.text, _passwordCtrl.text, context);
               }
             },
             child: Text(

@@ -1,3 +1,4 @@
+import 'package:admin/features/bot/widgets/create_bot_step_form.dart';
 import 'package:admin/screens/bots/components/create_bot_form.dart';
 import 'package:flutter/material.dart';
 
@@ -14,6 +15,7 @@ class AddBotScreen extends StatelessWidget {
           children: [
             // Header(),
             CreateBotForm(),
+            CreateBotStepForm()
           ],
         ),
       ),
